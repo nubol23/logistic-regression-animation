@@ -1,3 +1,5 @@
+# Rafael Villca Poggian
+
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import gluOrtho2D
@@ -10,12 +12,9 @@ from sklearn.datasets import make_classification
 import time
 
 window = 0
-# width, height = 600, 900
 width, height = 800, 800
 
 alpha = 0.1
-# alpha = 0.01
-# theta = np.zeros((3, 1))
 theta = np.random.randn(3, 1)
 bounds = (-5, 5, -5, 5)
 accuracy = -1
@@ -28,7 +27,6 @@ def refresh2d(width, height):
     glViewport(0, 0, width, height)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    # gluOrtho2D(-5, 12, -5, 12)
     gluOrtho2D(*bounds)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
@@ -101,12 +99,10 @@ def draw():
         if not finished:
             print(accuracy, grad.max())
             finished = True
-    # time.sleep(0.05)
     glFlush()
 
 
 if __name__ == '__main__':
-    # X, Y = np.load('../x.npy'), np.load('../y.npy')
     X, Y = make_classification(n_samples=100, n_features=2, n_redundant=0, n_informative=1, n_clusters_per_class=1)
     X = (X - np.mean(X, axis=0, keepdims=True)) / np.std(X, axis=0, keepdims=True)
     phi_x = np.hstack((np.ones((len(X), 1)), X))

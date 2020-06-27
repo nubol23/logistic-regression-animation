@@ -1,3 +1,5 @@
+# Rafael Villca Poggian
+
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 
@@ -12,10 +14,9 @@ from matplotlib.tri import Triangulation
 import time
 
 window = 0
-width, height = 800, 830  # window size
+width, height = 800, 830
 
 mouse_x, mouse_y = 0, 0
-# bounds = (-10, 10, -10, 10)
 
 x_angle = 0
 y_angle = 0
@@ -82,13 +83,12 @@ def triangulate(x, y):
     return tri.get_masked_triangles()
 
 
-def draw():  # ondraw is called all the time
+def draw():
     global x_angle, y_angle, z_angle
     global theta, accuracy, finished, k
 
-    # glClearColor(1, 1, 1, 1)
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)  # clear the screen
-    glLoadIdentity()  # reset position
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    glLoadIdentity()
 
     refresh2d(width, height)
 
@@ -137,8 +137,6 @@ def draw():  # ondraw is called all the time
 
     glFlush()
 
-    # time.sleep(0.5)
-
     x_angle = (x_angle + v_increment) % 360
     y_angle = (y_angle + h_increment) % 360
     z_angle = 0
@@ -183,7 +181,6 @@ def rotate(degrees, axis):
 
 
 if __name__ == '__main__':
-    # X, Y = make_blobs(n_features=3, centers=2, n_samples=50)
     X, Y = make_classification(n_samples=100, n_features=3, n_redundant=0, n_informative=1, n_clusters_per_class=1)
     X = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
     phi_x = np.hstack((np.ones((len(X), 1)), X))
